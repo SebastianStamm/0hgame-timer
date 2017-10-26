@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700" rel="stylesheet">
+  </head>
+  <body style="background-color: black; color: gray; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 10vw; text-align: center; line-height: 100vh; -webkit-text-stroke: 0.15vw white;">
+    <div id="timeContainer"></div>
+  </body>
+
+  <script>
+    const startTime = new Date('2017-10-29T02:00:00.000+0200').valueOf();
+    const endTime = new Date('2017-10-29T02:00:00.000+0100').valueOf();
+
+    const body = document.body;
+
+    function animate() {
+      const now = Date.now();
+
+      if(startTime - now > 0) {
+        // render time before
+        const time = new Date();
+        timeContainer.textContent = leftPad(time.getHours()) + ':' + leftPad(time.getMinutes()) + ':' + leftPad(time.getSeconds());
+      } else if(endTime - now > 0) {
+        // render time after
+        body.style.color = 'darkred';
+        body.style['-webkit-text-stroke'] = '0.25vw red';
+        body.style.fontSize = '25vw';
+
+        timeContainer.textContent = convertRemaining(endTime - now);
+        timeContainer.textContent = '02:00';
+      } else {
+        body.style.color = 'darkblue';
+        body.style['-webkit-text-stroke'] = '0.15vw blue';
+        body.style.fontSize = '10vw';
+
+        timeContainer.textContent = 'Game Over'
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    function convertRemaining(milliseconds) {
+      const minutes = Math.floor(milliseconds / 60 / 1000);
+      const seconds = Math.floor((milliseconds / 1000) % 60);
+      const ms = Math.floor((milliseconds % 1000) / 10);
+
+      if(minutes) {
+        return leftPad(minutes) + ':' + leftPad(seconds);
+      } else {
+        return leftPad(seconds) + ':' + leftPad(ms);
+      }
+    }
+
+    function leftPad(number) {
+      return number.toString().length < 2 ? '0' + number : number;
+    }
+
+    requestAnimationFrame(animate);
+  </script>
+</html>
