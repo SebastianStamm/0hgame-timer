@@ -126,7 +126,52 @@ window.config = [
   speak: '1'
   },
   {
+  time: 59 * 60 * 1000 + 59 * 1000,
+  speak: '0'
+  },
+  {
   time: 60 * 60 * 1000,
   speak: 'Game Over'
+  },
+
+  {
+    time: -1 * 60 * 1000,
+    sound: {
+      src: 'soundtrack/00.ogg',
+      loop: true
+    }
+  },
+  {
+    time: -5.5 * 1000,
+    sound: {
+      src: [
+        'soundtrack/01.mp3',
+        'soundtrack/02.mp3',
+        'soundtrack/03.mp3',
+        'soundtrack/04.mp3',
+        'soundtrack/05.mp3',
+        'soundtrack/06.mp3',
+        'soundtrack/07.mp3',
+        'soundtrack/08.mp3',
+        'soundtrack/09.mp3',
+        'soundtrack/10.mp3',
+        'soundtrack/11.mp3',
+        'soundtrack/12.mp3',
+        'soundtrack/13.mp3',
+        'soundtrack/14.mp3'
+      ]
+    }
+  },
+  {
+    time: 55 * 60 * 1000,
+    sound: {
+      src: 'soundtrack/ending.ogg',
+      loop: true,
+      fadePrevious: true
+    }
+  },
+  {
+    time: 60*60*1000,
+    sound: false
   }
 ]
